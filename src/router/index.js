@@ -1,53 +1,84 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import SearchPersonsView from "@/views/SearchPersonsView.vue";
+import SearchPersons from "@/views/SearchPersonsView.vue";
 import NewsView from "@/views/NewsView.vue";
 import StatisticView from "@/views/StatisticView.vue";
 import LogInView from "@/views/LogInView.vue";
 import RegistrationView from "@/views/RegistrationView.vue";
+import i18n from '../i18n';
+import { createI18n } from 'vue-i18n';
 import PersonView from "@/views/PersonView.vue";
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: {
+      titleKey: 'base.navbar.home'
+    }
   },
   {
     path: '/persons',
     name: 'search',
-    component: SearchPersonsView
+    component: SearchPersons,
+    meta: {
+      titleKey: 'base.navbar.search_people'
+    }
   },
   {
     path: '/person/:id',
     name: 'person',
-    component: PersonView
+    component: PersonView,
+    meta: {
+        titleKey: 'base.navbar.person'
+      }
   },
   {
     path: '/news',
     name: 'news',
-    component: NewsView
+    component: NewsView,
+    meta: {
+      titleKey: 'base.navbar.news'
+    }
   },
   {
     path: '/statistic',
     name: 'statistic',
-    component: StatisticView
+    component: StatisticView,
+    meta: {
+      titleKey: 'base.navbar.statistic'
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: LogInView
+    component: LogInView,
+    meta: {
+      titleKey: 'base.navbar.login'
+    }
   },
   {
     path: '/registration',
     name: 'registration',
-    component: RegistrationView
+    component: RegistrationView,
+    meta: {
+      titleKey: 'base.navbar.registration'
+    }
   },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+router.afterEach((to) => {
+  const pageTitleKey = to.meta.titleKey;
+  if (pageTitleKey) {
+    const pageTitle = getTitleTranslation(pageTitleKey);
+    document.title = pageTitle;
+  }
+});
+
+export default router;

@@ -172,6 +172,13 @@ export default {
   methods: {
     changeLanguage(language) {
       this.$i18n.locale = language; // изменяем текущий язык
+
+      // Обновляем заголовок вкладки при изменении языка
+      const pageTitleKey = this.$route.meta.titleKey;
+      if (pageTitleKey) {
+        const pageTitle = this.$t(pageTitleKey);
+        document.title = pageTitle;
+      }
     },
   },
 };
