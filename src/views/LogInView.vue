@@ -57,7 +57,7 @@ export default {
         // Можно использовать, например, axios или fetch для отправки запроса
         // Пример с использованием axios:
         axios.post("/api/v1/login", {
-          email: this.login,
+          login: this.login,
           password: this.password
         })
         .then(response => {
