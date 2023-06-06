@@ -3,7 +3,8 @@ import HomeView from '@/views/HomeView.vue'
 import SearchPersons from "@/views/SearchPersonsView.vue";
 import NewsView from "@/views/NewsView.vue";
 import StatisticView from "@/views/StatisticView.vue";
-import LogIn from "@/views/LogInView.vue";
+import LogInView from "@/views/LogInView.vue";
+import RegistrationView from "@/views/RegistrationView.vue";
 
 const routes = [
   {
@@ -29,7 +30,12 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LogIn
+    component: LogInView
+  },
+  {
+    path: '/registration',
+    name: 'registration',
+    component: RegistrationView
   },
 ]
 
