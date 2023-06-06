@@ -31,7 +31,7 @@
             <router-link to="/login" class="nav-link active" aria-current="page">{{ $t('base.navbar.login') }}</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/registration" class="nav-link active" aria-current="page">{{ $t('base.navbar.login') }}</router-link>
+            <router-link to="/registration" class="nav-link active" aria-current="page">{{ $t('base.navbar.registration') }}</router-link>
           </li>
             <div class="language-selector">
               <button v-for="language in supportedLanguages" :key="language" @click="changeLanguage(language)">
