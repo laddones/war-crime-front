@@ -24,7 +24,7 @@ import { getTitleTranslation } from '@/i18n';
 import SearchForm from "@/components/Search/SearchForm.vue";
 import PersonCards from "@/components/UI/PersonCards.vue";
 export default {
-    name: "SearchPersons",
+    name: "SearchPersonsView",
     components: {PersonCards, SearchForm},
     created() {
         document.title = getTitleTranslation('base.navbar.search_people');
