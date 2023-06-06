@@ -59,6 +59,13 @@ const i18n = createI18n({
         important_news: 'Important news',
         general_news: 'General news',
       },
+      statistic: {
+        description: 'Here you can find statistical data about' +
+            ' the losses of the russian army and other military' +
+            ' formations involved in the armed aggression of' +
+            ' the russian federation against Ukraine from 2014' +
+            ' to the present time.',
+      },
       login: {
         login_title: 'Log in',
         login: 'Login:',
@@ -135,6 +142,12 @@ const i18n = createI18n({
         news_title: 'Новости',
         important_news: 'Важные события',
         general_news: 'Общие новости',
+      },
+      statistic: {
+        description: 'Тут Вы можете найти статистические данные о' +
+            ' потерях российской армии и других военных формирований,' +
+            ' задействованных в вооруженной агрессии российской' +
+            ' федерации против Украины, с 2014 года по нынешнее время.',
       },
       login: {
         login_title: 'Вход',
@@ -214,6 +227,12 @@ const i18n = createI18n({
         important_news: 'Важливі події',
         general_news: 'Загальні новини',
       },
+      statistic: {
+        description: 'Тут Ви можете знайти статистичні дані' +
+            ' про втрати російськох армії та інших військових' +
+            ' формувань, задіяних у збройній агресії російської' +
+            ' федерації проти України, з 2014 року по теперешній час.',
+      },
       login: {
         login_title: 'Вхід',
         login: 'Логін:',
@@ -239,7 +258,6 @@ const i18n = createI18n({
 
 
 export const getTitleTranslation = (key) => {
-  console.log(i18n.global.t(key));
   return i18n.global.t(key);
 };
 

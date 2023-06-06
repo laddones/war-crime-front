@@ -5,6 +5,7 @@ import NewsView from "@/views/NewsView.vue";
 import StatisticView from "@/views/StatisticView.vue";
 import LogInView from "@/views/LogInView.vue";
 import RegistrationView from "@/views/RegistrationView.vue";
+import PersonView from "@/views/PersonView.vue";
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     path: '/persons',
     name: 'search',
     component: SearchPersonsView
+  },
+  {
+    path: '/person/:id',
+    name: 'person',
+    component: PersonView
   },
   {
     path: '/news',

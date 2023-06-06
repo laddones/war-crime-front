@@ -19,7 +19,7 @@
                 <div class="col">
                     <div class=" text-center" role="alert">
                       <p style="font-weight: bold">
-                          Тут Ви можете знайти статистичні дані про втрати російськох армії та інших військових формувань, задіяних у збройній агресії російської федерації проти України, з 2014 року по теперешній час.
+                          {{ $t('statistic.description')}}
                       </p>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="col-md-12 col-lg-6">
                  <div class="chart-container" style="border: thick double #32a1ce;">
-                     <StatisticBar bar_title="Вік" bar_id="DeathChart" :data-bar=response.death :bar_reverse=true />
+                     <StatisticBar bar_title="Рік смерті" bar_id="DeathChart" :data-bar=response.death :bar_reverse=true />
                 </div>
             </div>
         </div>

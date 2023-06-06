@@ -16,12 +16,12 @@
                       </div>
                   </div>
               </div>
-             <Carousel :items-to-show="carouselItemsToShow" :wrap-around="true" :autoplay="2000">
+              <Carousel :items-to-show="carouselItemsToShow" :wrap-around="true" :autoplay="2000">
                 <Slide v-for="person in persons" :key="person.first_name">
                   <div class="carousel__item item">
                       <img :src=person.image class="owl-carousel-image img-fluid" alt="">
                       <div class="owl-carousel-info">
-                        <h5 class="mb-2">
+                        <h5 class="mb-2 text-wrap">
                             {{person.first_name}}
                             {{person.last_name}}
                             {{person.middle_name}}

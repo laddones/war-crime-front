@@ -35,7 +35,7 @@ export default {
                 {
                     id: 1,
                     image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-                    absolute_url: 'https://poternet.site/en/person/109726',
+                    absolute_url: '/person/1',
                     last_name: 'test-1',
                     first_name: 'test-1',
                     middle_name: 'test-1',
@@ -43,55 +43,55 @@ export default {
                     military_unit: 'test-1'
                 },
                 {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-    absolute_url: 'https://poternet.site/en/person/109726',
-    last_name: 'test-1',
-    first_name: 'test-1',
-    middle_name: 'test-1',
-    birthday: '10.10.2002',
-    military_unit: 'test-1'
-},
+                    id: 2,
+                    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+                    absolute_url: '/person/2',
+                    last_name: 'test-1',
+                    first_name: 'test-1',
+                    middle_name: 'test-1',
+                    birthday: '10.10.2002',
+                    military_unit: 'test-1'
+                },
                 {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-    absolute_url: 'https://poternet.site/en/person/109726',
-    last_name: 'test-1',
-    first_name: 'test-1',
-    middle_name: 'test-1',
-    birthday: '10.10.2002',
-    military_unit: 'test-1'
-},
+                    id: 3,
+                    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+                    absolute_url: '/person/3',
+                    last_name: 'test-1',
+                    first_name: 'test-1',
+                    middle_name: 'test-1',
+                    birthday: '10.10.2002',
+                    military_unit: 'test-1'
+                },
                 {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-    absolute_url: 'https://poternet.site/en/person/109726',
-    last_name: 'test-1',
-    first_name: 'test-1',
-    middle_name: 'test-1',
-    birthday: '10.10.2002',
-    military_unit: 'test-1'
-},
+                    id: 4,
+                    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+                    absolute_url: '/person/4',
+                    last_name: 'test-1',
+                    first_name: 'test-1',
+                    middle_name: 'test-1',
+                    birthday: '10.10.2002',
+                    military_unit: 'test-1'
+                },
                 {
-    id: 5,
-    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-    absolute_url: 'https://poternet.site/en/person/109726',
-    last_name: 'test-1',
-    first_name: 'test-1',
-    middle_name: 'test-1',
-    birthday: '10.10.2002',
-    military_unit: 'test-1'
-},
+                    id: 5,
+                    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+                    absolute_url: '/person/5',
+                    last_name: 'test-1',
+                    first_name: 'test-1',
+                    middle_name: 'test-1',
+                    birthday: '10.10.2002',
+                    military_unit: 'test-1'
+                },
                 {
-    id: 6,
-    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-    absolute_url: 'https://poternet.site/en/person/109726',
-    last_name: 'test-1',
-    first_name: 'test-1',
-    middle_name: 'test-1',
-    birthday: '10.10.2002',
-    military_unit: 'test-1'
-},
+                    id: 6,
+                    image: 'https://images.unsplash.com/photo-1548092693-585cfab34e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJteXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+                    absolute_url: '/person/6',
+                    last_name: 'test-1',
+                    first_name: 'test-1',
+                    middle_name: 'test-1',
+                    birthday: '10.10.2002',
+                    military_unit: 'test-1'
+                },
             ]
         }
     }
