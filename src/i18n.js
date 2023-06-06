@@ -65,6 +65,18 @@ const i18n = createI18n({
         login_placeholder: 'Enter your login',
         password_placeholder: 'Enter your password'
       },
+      registration: {
+        registration_title: '',
+        login: '',
+        login_placeholder: '',
+        email: '',
+        email_placeholder: '',
+        password: '',
+        confirm_password: '',
+        password_placeholder: '',
+        confirm_password_placeholder: '',
+
+      },
     },
 
 
@@ -128,6 +140,17 @@ const i18n = createI18n({
         password: 'Пароль:',
         login_placeholder: 'Введите логин',
         password_placeholder: 'Введите пароль'
+      },
+      registration: {
+        registration_title: '',
+        login: '',
+        login_placeholder: '',
+        email: '',
+        email_placeholder: '',
+        password: '',
+        confirm_password: '',
+        password_placeholder: '',
+        confirm_password_placeholder: '',
       },
     },
 
@@ -193,6 +216,17 @@ const i18n = createI18n({
         password: 'Пароль:',
         login_placeholder: 'Введіть логін',
         password_placeholder: 'Введіть пароль'
+      },
+      registration: {
+        registration_title: '',
+        login: '',
+        login_placeholder: '',
+        email: '',
+        email_placeholder: '',
+        password: '',
+        confirm_password: '',
+        password_placeholder: '',
+        confirm_password_placeholder: '',
       },
     },
   },
