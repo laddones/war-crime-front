@@ -1,6 +1,14 @@
 <template>
     <section>
         <div class="container-fluid" v-for="item in feedItems" :key="item.isoDate">
+            <div v-if="isLoading" class="text-center">
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+          <div v-else>
             <div class="row">
                 <div class="col">
                   <div class="card mb-3">
@@ -21,6 +29,7 @@
                   </div>
                 </div>
             </div>
+          </div>
         </div>
     </section>
 </template>
@@ -34,6 +43,7 @@ export default {
     data() {
         return {
             feedItems: [],
+            isLoading: true,
         }
     },
     props: {
@@ -54,9 +64,11 @@ export default {
             const response = await axios.get(`https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`);
             const feed = await parser.parseString(response.data);
             this.feedItems = feed.items.slice(0, this.items_counter);
+            this.isLoading = false;
             console.log(this.feedItems);
           } catch (error) {
             console.error('Ошибка при загрузке или парсинге RSS-ленты:', error);
+            this.isLoading = false;
           }
       },
       formatDate(dateString) {

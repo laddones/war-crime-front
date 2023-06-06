@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow" id="main_navbar">
     <div class="container-fluid" style="margin-top: 15px;">
-      <a class="navbar-brand" href="#" id="brand_label">
-          <img src="@/assets/images/logo/Icon-removebg-preview.png" alt="Logo">
-          <span>Потерь.НЕТ</span>
-      </a>
+        <router-link to="/" class="navbar-brand" id="brand_label">
+            <img src="@/assets/images/logo/Icon-removebg-preview.png" alt="Logo">
+            <span>Потерь.НЕТ</span>
+        </router-link>
       <div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon" style="height: 40px; width: 40px; "></span> <!-- 3 start style="height: 40px; width: 40px; " -->
