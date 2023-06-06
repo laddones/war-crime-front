@@ -23,6 +23,7 @@
                                  class="form-control text-center"
                                  id="password"
                                  :placeholder="$t('registration.password_placeholder')"
+                                 minlength="8"
                                  required
                           >
                       </div>
@@ -33,6 +34,7 @@
                                  class="form-control text-center"
                                  id="confirm_password"
                                  :placeholder="$t('registration.confirm_password_placeholder')"
+                                 minlength="8"
                                  required
                           >
                       </div>
@@ -78,6 +80,17 @@ export default {
     },
     methods: {
       handleSubmit() {
+          if (this.password !== this.confirm_password) {
+            // Проверка совпадения паролей
+            alert("Пароли не совпадают!");
+            return;
+          }
+
+          if (this.password.length < 8) {
+            // Проверка минимальной длины пароля
+            alert("Минимальная длина пароля - 8 символов!");
+            return;
+          }
         // Выполните здесь отправку запроса по API, используя значения полей email и password
         // Можно использовать, например, axios или fetch для отправки запроса
         // Пример с использованием axios:

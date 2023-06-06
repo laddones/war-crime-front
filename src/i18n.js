@@ -151,7 +151,7 @@ const i18n = createI18n({
         email: 'Email:',
         email_placeholder: 'Ваша электронная почта (example@example.com)',
         password: 'Создайте пароль:',
-        confirm_password: 'Пароль:',
+        confirm_password: 'Повторите пароль:',
         password_placeholder: 'Введите пароль',
         confirm_password_placeholder: 'Повторите пароль',
       },
