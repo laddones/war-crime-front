@@ -28,7 +28,10 @@
                       </div>
                       <div class="row">
                           <div class="col-12">
-                              <button type="submit" class="btn btn-md btn-primary mb-3" id="submit">{{ $t('login.login_title')}}</button>
+                              <button type="submit" class="btn btn-md btn-primary w-100 mb-3" id="submit">{{ $t('login.login_title')}}</button>
+                          </div>
+                          <div class="col-12">
+                                <router-link to="/registration" class="btn btn-primary w-100 mb-3" role="button">{{ $t('registration.registration_button') }}</router-link>
                           </div>
                       </div>
                   </form>

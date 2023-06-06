@@ -7,44 +7,51 @@
                   <h3 class="text-center">{{ $t('registration.registration_title')}}</h3>
                   <form  @submit.prevent="handleSubmit" class="text-center">
                       <div class="mb-4">
-                        <label for="login" class="form-label">{{ $t('registration.login')}}</label>
-                        <input v-model="login"
-                               type="text"
-                               class="form-control text-center"
-                               id="login"
-                               :placeholder="$t('registration.login_placeholder')"
-                               required
-                        >
+                          <label for="login" class="form-label">{{ $t('registration.login')}}</label>
+                          <input v-model="login"
+                                 type="text"
+                                 class="form-control text-center"
+                                 id="login"
+                                 :placeholder="$t('registration.login_placeholder')"
+                                 required
+                          >
                       </div>
                       <div class="mb-4">
-                        <label for="password" class="form-label">{{ $t('registration.password')}}</label>
-                        <input v-model="password"
-                               type="password"
-                               class="form-control text-center"
-                               id="password"
-                               :placeholder="$t('registration.password_placeholder')"
-                               required
-                        >
-                        <label for="confirm_password" class="form-label">{{ $t('registration.confirm_password')}}</label>
-                        <input v-model="confirm_password"
-                               type="password"
-                               class="form-control text-center"
-                               id="confirm_password"
-                               :placeholder="$t('registration.confirm_password_placeholder')"
-                               required
-                        >
-                        <label for="email" class="form-label">{{ $t('registration.password')}}</label>
-                        <input v-model="email"
-                               type="email"
-                               class="form-control text-center"
-                               id="email"
-                               :placeholder="$t('registration.email_placeholder')"
-                               required
-                        >
+                          <label for="password" class="form-label">{{ $t('registration.password')}}</label>
+                          <input v-model="password"
+                                 type="password"
+                                 class="form-control text-center"
+                                 id="password"
+                                 :placeholder="$t('registration.password_placeholder')"
+                                 required
+                          >
+                      </div>
+                      <div class="mb-4">
+                          <label for="confirm_password" class="form-label">{{ $t('registration.confirm_password')}}</label>
+                          <input v-model="confirm_password"
+                                 type="password"
+                                 class="form-control text-center"
+                                 id="confirm_password"
+                                 :placeholder="$t('registration.confirm_password_placeholder')"
+                                 required
+                          >
+                      </div>
+                      <div class="mb-4">
+                          <label for="email" class="form-label">{{ $t('registration.password')}}</label>
+                          <input v-model="email"
+                                 type="email"
+                                 class="form-control text-center"
+                                 id="email"
+                                 :placeholder="$t('registration.email_placeholder')"
+                                 required
+                          >
                       </div>
                       <div class="row">
                           <div class="col-12">
-                              <button type="submit" class="btn btn-md btn-primary mb-3" id="submit">{{ $t('login.login_title')}}</button>
+                                <button type="submit" class="btn btn-md btn-primary w-100 mb-3" id="submit">{{ $t('registration.registration_button')}}</button>
+                          </div>
+                          <div class="col-12">
+                                <router-link to="/login" class="btn btn-primary w-100 mb-3" role="button">{{ $t('login.login_title') }}</router-link>
                           </div>
                       </div>
                   </form>
