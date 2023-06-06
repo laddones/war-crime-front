@@ -1,18 +1,30 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <HomeCounter/>
+  <HomeCarousel/>
+  <hr class="my-5">
+  <HomePartners/>
+  <hr class="my-5">
+  <HomeNews/>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HomeCounter from '@/components/Home/HomeCounter.vue'
+import HomeCarousel from "@/components/Home/HomeCarousel.vue";
+import HomePartners from "@/components/Home/HomePartners.vue";
+import HomeNews from "@/components/Home/HomeNews.vue";
+import {getTitleTranslation} from "@/i18n";
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
-  }
+      HomeNews,
+      HomePartners,
+      HomeCarousel,
+      HomeCounter,
+  },
+  created() {
+    document.title = getTitleTranslation('home.title');
+  },
 }
 </script>
