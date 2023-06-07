@@ -14,9 +14,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: {
-      titleKey: 'base.navbar.home'
-    }
   },
   {
     path: '/persons',

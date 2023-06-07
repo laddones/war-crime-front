@@ -82,42 +82,30 @@
                               </div>
                           </div>
                       </div>
-
+                    </div>
                   <hr class="my-5">
 <!--                    {#  Carousel images  #}-->
-                  <Carousel :wrap-around="true" :items-to-show="2">
-                    <Slide v-for="image in person.images" :key="person.images">
-                      <div class="carousel__item item">
-                          <a :href="image.image" class="fancybox" data-fancybox="gallery">
-                              <img :src="image.image"
-                              class="owl-carousel-image img-fluid" alt="">
-                          </a>
-                      </div>
-                    </Slide>
-                    <template #addons>
-                      <Navigation />
-                    </template>
-                  </Carousel>
-              </div>
+
+
+    <PersonCarousel/>
+
+
+
 <!--              {#  Загальна інформація  #}-->
+            </div>
           </div>
       </div>
-      </div>
+
   </section>
 </template>
 
 <script>
-import {Carousel, Navigation, Pagination, Slide} from "vue3-carousel";
+
+import PersonCarousel from '@/components/Person/PersonCarousel';
+
 
 export default {
-    name: "PersonView",
-    components: {
-        Carousel,
-        Slide,
-        Pagination,
-        Navigation,
-    },
-    data(){
+  data(){
         return{
             person: {
                 last_name: 'last_name',
@@ -126,11 +114,15 @@ export default {
                 images: [
                     {image: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80', show: true},
                 ],
-            }
-        }
+            },
+        };
     },
 
-}
+  components: {
+    PersonCarousel,
+  },
+  // ...
+};
 </script>
 
 <style scoped>
@@ -149,4 +141,61 @@ export default {
     height: auto;
     margin: 0 auto;
   }
+
+  .carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.carousel__item {
+  margin: 0 10px;
+}
+
+.owl-carousel-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal.is-active {
+  display: block;
+}
+
+.modal-dialog {
+  margin: 10% auto;
+  max-width: 600px;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 15px;
+}
+
+.modal-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
 </style>
+
