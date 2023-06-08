@@ -29,8 +29,8 @@
 
     <div v-if="isOpenModal" class="modal" @click="closeModal">
       <div class="zoom-controls" v-if="isOpenModal">
-        <button @click.stop="zoomIn">+</button>
-        <button @click.stop="zoomOut">-</button>
+        <button class="zoom-in-button" @click.stop="zoomIn"></button>
+<button class="zoom-out-button" @click.stop="zoomOut"></button>
       </div>
       <div class="modal-content">
         <div class="image-wrapper">
@@ -206,5 +206,34 @@ export default {
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+.zoom-in-button{
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  background-image: url('C:\Users\Лунтико\Desktop\lupa_plus-transformed.png'); /* Замените на путь к вашей иконке лупы */
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+.zoom-out-button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  background-image: url('C:\Users\Лунтико\Desktop\lupa_minus-transformed.png'); /* Замените на путь к вашей иконке лупы */
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.zoom-in-button {
+  background-size: 28px 28px; /* Задайте желаемый размер иконки */
+}
+
+.zoom-out-button {
+  background-size: 28px 28px; /* Задайте желаемый размер иконки */
 }
 </style>
