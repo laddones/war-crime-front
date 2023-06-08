@@ -28,8 +28,14 @@
     </div>
 
     <div v-if="isOpenModal" class="modal" @click="closeModal">
+      <div class="zoom-controls" v-if="isOpenModal">
+        <button @click.stop="zoomIn">+</button>
+        <button @click.stop="zoomOut">-</button>
+      </div>
       <div class="modal-content">
-        <img :src="selectedPerson.image" class="modal-image" alt="">
+        <div class="image-wrapper">
+          <img :src="selectedPerson.image" :style="{ transform: 'scale(' + selectedPerson.zoomLevel + ')' }" class="modal-image" alt="">
+        </div>
       </div>
     </div>
   </section>
@@ -52,19 +58,29 @@ export default {
           last_name: 'last_name',
           first_name: 'first_name',
           middle_name: 'middle_name',
-          image: 'https://images.wallpaperscraft.ru/image/single/voennyj_soldat_maska_220395_800x1200.jpg'
+          image: 'https://images.wallpaperscraft.ru/image/single/voennyj_soldat_maska_220395_800x1200.jpg',
+          zoomLevel: 1,
         },
         {
           last_name: 'last_name',
           first_name: 'first_name',
           middle_name: 'middle_name',
-          image: 'https://searchthisweb.com/wallpaper/military-helicopter_3840x2160_dtwkl.jpg'
+          image: 'https://searchthisweb.com/wallpaper/military-helicopter_3840x2160_dtwkl.jpg',
+          zoomLevel: 1,
         },
         {
           last_name: 'last_name',
           first_name: 'first_name',
           middle_name: 'middle_name',
-          image: 'https://e1.pxfuel.com/desktop-wallpaper/941/559/desktop-wallpaper-military-soldier-high-resolution-1920x1200-1600x1000-for-your-mobile-tablet-military-soldier-thumbnail.jpg'
+          image: 'https://e1.pxfuel.com/desktop-wallpaper/941/559/desktop-wallpaper-military-soldier-high-resolution-1920x1200-1600x1000-for-your-mobile-tablet-military-soldier-thumbnail.jpg',
+          zoomLevel: 1,
+        },
+        {
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
+          image: 'https://images.wallpaperscraft.ru/image/single/uzory_tsvety_formy_118512_5000x5000.jpg',
+          zoomLevel: 1,
         }
       ],
       isOpenModal: false,
@@ -95,11 +111,27 @@ export default {
         this.carouselItemsToShow = 3;
       }
     },
+    zoomIn() {
+      if (this.selectedPerson.zoomLevel < 1.5) {
+        this.selectedPerson.zoomLevel += 0.1;
+      }
+    },
+    zoomOut() {
+      if (this.selectedPerson.zoomLevel > 0.5) {
+        this.selectedPerson.zoomLevel -= 0.1;
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
+.hero-section {
+  background-color: #f8f8f8;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
 .item {
   height: 100%;
   width: 100%;
@@ -107,20 +139,10 @@ export default {
   padding-right: 1rem;
 }
 
-.owl-carousel-info {
-  padding: 1rem;
-  background-color: white;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.175);
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-
 .owl-carousel-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   box-sizing: border-box;
 }
 
@@ -149,9 +171,34 @@ export default {
 }
 
 .modal-image {
-  max-width: 90%;
-  max-height: 80%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
+  object-position: center center;
+  transition: transform 0.3s ease;
+}
+
+.modal-image.full-width {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+.modal-image.full-height {
+  width: auto;
+  height: 100%;
+  max-width: none;
+}
+
+.zoom-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+.zoom-controls button {
+  margin-right: 0.5rem;
 }
 
 @media (max-width: 767px) {
