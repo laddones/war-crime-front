@@ -15,7 +15,7 @@ const routes = [
     name: 'home',
     component: HomeView,
     meta: {
-      titleKey: 'base.navbar.home'
+      titleKey: 'Потерь.НЕТ'
     }
   },
   {
