@@ -14,6 +14,9 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
+    meta: {
+      titleKey: 'Потерь.НЕТ'
+    }
   },
   {
     path: '/persons',
