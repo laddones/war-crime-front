@@ -213,7 +213,7 @@ export default {
   height: 30px;
   border: none;
   background-color: transparent;
-  background-image: url('C:\Users\Лунтико\Desktop\lupa_plus-transformed.png'); /* Замените на путь к вашей иконке лупы */
+  background-image: url('@/assets/images/lupa/lupa_plus-transformed.png');
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -223,7 +223,7 @@ export default {
   height: 30px;
   border: none;
   background-color: transparent;
-  background-image: url('C:\Users\Лунтико\Desktop\lupa_minus-transformed.png'); /* Замените на путь к вашей иконке лупы */
+  background-image: url('@/assets/images/lupa/lupa_minus-transformed.png'); /* Замените на путь к вашей иконке лупы */
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
