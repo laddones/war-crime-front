@@ -76,9 +76,14 @@
                                               <li class="list-group-item">
                                                   Додаткова інформація: {{person.additional_info}}
                                              </li>
+
+
                                           </ul>
+                                          <Button_report_bug/>
                                       </div>
                                   </div>
+
+
                               </div>
                           </div>
                       </div>
@@ -102,7 +107,7 @@
 <script>
 
 import PersonCarousel from '@/components/Person/PersonCarousel';
-
+import Button_report_bug from '@/components/Person/Button_report_bug';
 
 export default {
   data(){
@@ -120,6 +125,7 @@ export default {
 
   components: {
     PersonCarousel,
+    Button_report_bug,
   },
   // ...
 };
