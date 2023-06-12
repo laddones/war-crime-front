@@ -8,7 +8,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h2>Сообщить об ошибке</h2>
-            <button @click="closeModal" class="close">&times;</button>
+            <button @click="closeModal" class="close"></button>
           </div>
           <div class="modal-body">
             <div class="form-group">
@@ -82,9 +82,28 @@ export default {
 }
 
 .close {
-  font-size: 18px;
+  font-size: 32px;
   font-weight: bold;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.close::before {
+  content: "\00D7";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close:hover {
+  color: red;
 }
 
 .open-modal-btn {
