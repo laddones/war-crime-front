@@ -5,7 +5,7 @@ import NewsView from "@/views/NewsView.vue";
 import StatisticView from "@/views/StatisticView.vue";
 import LogInView from "@/views/LogInView.vue";
 import RegistrationView from "@/views/RegistrationView.vue";
-import i18n from '../i18n';
+import i18n, {getTitleTranslation} from '../i18n';
 import { createI18n } from 'vue-i18n';
 import PersonView from "@/views/PersonView.vue";
 import store from '../store';
@@ -66,7 +66,9 @@ const routes = [
     name: 'registration',
     component: RegistrationView,
     meta: {
-      titleKey: 'base.navbar.registration'
+      titleKey: 'base.navbar.registration',
+      requiresAuth: true,
+      requiresAuthDisallow: true
     }
   },
 ]

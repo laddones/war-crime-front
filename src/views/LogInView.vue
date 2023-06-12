@@ -46,16 +46,11 @@
 import { ref, computed  } from 'vue';
 import { useStore   } from 'vuex';
 import {getTitleTranslation} from "@/i18n";
-
+import { useRouter } from 'vue-router';
 export default {
-    data(){
-        return{
-
-        }
-    },
-
     setup() {
       const store = useStore();
+      const router = useRouter();
       const username = ref('');
       const password = ref('');
 
@@ -64,6 +59,9 @@ export default {
         store.dispatch('login', {
           username: username.value,
           password: password.value,
+        }).then(() => {
+        // Перенаправление на домашнюю страницу после успешной авторизации
+        router.push({name: 'home', });
         });
       };
 
