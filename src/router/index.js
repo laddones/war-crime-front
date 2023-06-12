@@ -8,14 +8,20 @@ import RegistrationView from "@/views/RegistrationView.vue";
 import i18n from '../i18n';
 import { createI18n } from 'vue-i18n';
 import PersonView from "@/views/PersonView.vue";
+import data from '@/router/admin-router';
+import Navbar from '@/components/UI/Navbar.vue';
+import Footer from '@/components/UI/Footer.vue';
 
-const routes = [
+
+
+const routes_client = [
   {
     path: '/',
     name: 'home',
     component: HomeView,
     meta: {
-      titleKey: 'Потерь.НЕТ'
+      titleKey: 'Потерь.НЕТ',
+      showNavbar: true
     }
   },
   {
@@ -66,7 +72,27 @@ const routes = [
       titleKey: 'base.navbar.registration'
     }
   },
-]
+  {
+    path: '/navbar',
+    name: 'navbar',
+    component: Navbar,
+    meta: {
+      titleKey: 'Navbar' // Заголовок футера, если нужно
+    }
+  },
+  {
+    path: '/footer',
+    name: 'footer',
+    component: Footer,
+    meta: {
+      titleKey: 'Footer' // Заголовок футера, если нужно
+    }
+  }
+];
+
+
+const routes = routes_client.concat(data);
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
