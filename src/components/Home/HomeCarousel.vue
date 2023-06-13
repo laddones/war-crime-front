@@ -54,44 +54,6 @@ export default {
     },
     data(){
         return {
-          // persons: [
-          //     {
-          //         last_name: 'last_name-1',
-          //         first_name: 'first_name-1',
-          //         middle_name: 'middle_name-1',
-          //         image: 'https://t3.ftcdn.net/jpg/02/54/85/88/360_F_254858893_X2mEiY1a6ojE5aBV0ydgQWkwJxJ7s0GF.jpg'
-          //     },
-          //     {
-          //         last_name: 'last_name-2',
-          //         first_name: 'first_name-2',
-          //         middle_name: 'middle_name-2',
-          //         image: 'https://images.unsplash.com/photo-1539538507524-eab6a4184604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWlsaXRhcnl8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
-          //     },
-          //     {
-          //         last_name: 'last_name-3',
-          //         first_name: 'first_name-3',
-          //         middle_name: 'middle_name-3',
-          //         image: 'https://t3.ftcdn.net/jpg/02/54/85/88/360_F_254858893_X2mEiY1a6ojE5aBV0ydgQWkwJxJ7s0GF.jpg'
-          //     },
-          //     {
-          //         last_name: 'last_name-4',
-          //         first_name: 'first_name-4',
-          //         middle_name: 'middle_name-4',
-          //         image: 'https://images.unsplash.com/photo-1539538507524-eab6a4184604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWlsaXRhcnl8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
-          //     },
-          //     {
-          //         last_name: 'last_name-5',
-          //         first_name: 'first_name-5',
-          //         middle_name: 'middle_name-5',
-          //         image: 'https://t3.ftcdn.net/jpg/02/54/85/88/360_F_254858893_X2mEiY1a6ojE5aBV0ydgQWkwJxJ7s0GF.jpg'
-          //     },
-          //     {
-          //         last_name: 'last_name-6',
-          //         first_name: 'first_name-6',
-          //         middle_name: 'middle_name-6',
-          //         image: 'https://images.unsplash.com/photo-1539538507524-eab6a4184604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWlsaXRhcnl8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
-          //     },
-          // ],
             persons: [],
             carouselItemsToShow: 2,
         }

@@ -30,7 +30,7 @@
                               <div class="col-lg-6 col-md-6 col-sm-6 col-6 partner-block">
                                   <div class="container partner-container">
                                       <h6 class="mb-2 text-center">
-                                          <a class="partners-static" :href="partner.url" target="_blank">{{ partner.name }}</a>
+                                          <a class="partners-static text-wrap" :href="partner.url" target="_blank">{{ partner.name }}</a>
                                       </h6>
                                   </div>
                               </div>
@@ -106,24 +106,31 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "HomePartners",
     data(){
         return{
-            partners: [
-                {id: '1', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-                {id: '2', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-                {id: '3', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-                {id: '4', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-                {id: '5', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-                {id: '6', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-                {id: '7', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-                {id: '8', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-                {id: '9', image: 'https://www.kavkazr.com/Content/responsive/RFE/ru-CAU/img/logo.svg', url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmilitary&psig=AOvVaw3fB9-LhRccW7L-M6JErNBf&ust=1685542710143000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMD3jIaenf8CFQAAAAAdAAAAABAE', name: 'millitary'},
-
-            ],
+            partners: [],
         }
-    }
+    },
+    created() {
+        this.getPartnersItems();
+    },
+    methods:{
+        getPartnersItems(){
+            axios.get("http://127.0.0.1:8000/api/v1/partners/")
+            .then(response => {
+                this.partners = response.data;
+                console.log(this.partners);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+    },
+
 }
 </script>
 
@@ -149,7 +156,7 @@ export default {
     .partners-static {
         color: black;
         text-decoration: none;
-        word-break: break-all;
+
     }
     .hero-section {
         background-repeat: no-repeat;
