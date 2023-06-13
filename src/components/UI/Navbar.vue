@@ -1,4 +1,5 @@
 <template>
+<nav v-if="!isAdminRoute">
   <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow" id="main_navbar">
     <div class="container-fluid" style="margin-top: 15px;">
       <router-link to="/" class="navbar-brand" id="brand_label">
@@ -43,13 +44,13 @@
     </div>
   </nav>
   <router-view/>
+</nav>
 </template>
 
 <script>
 
 
 export default {
-
   data() {
     return {
       supportedLanguages: ['en', 'ru', 'uk'], // список поддерживаемых языков
@@ -67,6 +68,11 @@ export default {
       }
     },
   },
+  computed: {
+    isAdminRoute() {
+      return this.$route.path.startsWith('/admin');
+    }
+  }
 };
 </script>
 

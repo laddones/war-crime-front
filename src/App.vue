@@ -1,10 +1,14 @@
 <template>
   <div>
+  <div v-if="!isAdminPanel">
     <Navbar />
+  </div>
     <div class="page-content">
 
-    </div>
+  </div>
+  <footer v-if="!isAdminPanel">
     <Footer />
+  </footer>
   </div>
 </template>
 
@@ -16,7 +20,11 @@ export default {
     Navbar,
     Footer
   },
-  // остальной код
+  computed: {
+    isAdminPanel() {
+      return window.location.pathname === '/admin';
+    }
+  },
 }
 </script>
 

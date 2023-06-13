@@ -1,17 +1,32 @@
 <template>
   <div>
-    <h1>Admin</h1>
-    <router-link to="/admin/login">Go to Login</router-link>
-    <router-link to="/admin/dashboard">Go to Dashboard</router-link>
-    <router-view></router-view>
+    <template v-if="isAuthenticated">
+      <!-- Компонент панели управления (dashboard) -->
+      <Dashboard />
+    </template>
+    <template v-else>
+      <!-- Компонент страницы входа (login) -->
+      <Login />
+    </template>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'AdminView',
-}
-</script>
+import Dashboard from '@/components/Admin/Dashboard.vue';
+import Login from '@/components/Admin/Login.vue';
 
-<style scoped>
-</style>
+export default {
+  components: {
+    Dashboard,
+    Login
+  },
+  computed: {
+    isAuthenticated() {
+      // Ваша логика проверки авторизации
+      // Например, проверка наличия и валидности токена
+      const token = localStorage.getItem('token'); // Получите токен из хранилища (localStorage)
+      return !!token; // Верните true, если токен существует и действителен, иначе верните false
+    }
+  }
+};
+</script>
