@@ -72,22 +72,6 @@ const routes_client = [
       titleKey: 'base.navbar.registration'
     }
   },
-  {
-    path: '/navbar',
-    name: 'navbar',
-    component: Navbar,
-    meta: {
-      titleKey: 'Navbar' // Заголовок футера, если нужно
-    }
-  },
-  {
-    path: '/footer',
-    name: 'footer',
-    component: Footer,
-    meta: {
-      titleKey: 'Footer' // Заголовок футера, если нужно
-    }
-  }
 ];
 
 
