@@ -28,11 +28,14 @@
           <li class="nav-item">
             <router-link to="/statistic" class="nav-link active" aria-current="page">{{ $t('base.navbar.statistic') }}</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="!isLoggedIn">
             <router-link to="/login" class="nav-link active" aria-current="page">{{ $t('base.navbar.login') }}</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="!isLoggedIn">
             <router-link to="/registration" class="nav-link active" aria-current="page">{{ $t('base.navbar.registration') }}</router-link>
+          </li>
+          <li v-if="isLoggedIn" class="nav-item">
+            <a @click="handleLogout" class="nav-link active">Выйти</a>
           </li>
           <div class="language-selector">
             <button v-for="language in supportedLanguages" :key="language" @click="changeLanguage(language)">
@@ -59,7 +62,6 @@ export default {
   methods: {
     changeLanguage(language) {
       this.$i18n.locale = language; // изменяем текущий язык
-
       // Обновляем заголовок вкладки при изменении языка
       const pageTitleKey = this.$route.meta.titleKey;
       if (pageTitleKey) {
@@ -71,6 +73,15 @@ export default {
   computed: {
     isAdminRoute() {
       return this.$route.path.startsWith('/admin');
+    },
+    isLoggedIn() {
+      // Вернуть состояние авторизации из вашего хранилища или другого места,
+      // где хранится информация о состоянии авторизации пользователя
+      return this.$store.state.isLoggedIn;
+    },
+    handleLogout() {
+      // Ваша логика для выполнения выхода пользователя
+      this.$store.dispatch('logout');
     }
   }
 };

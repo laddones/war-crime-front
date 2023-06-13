@@ -1,12 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import SearchPersons from "@/views/SearchPersonsView.vue";
 import NewsView from "@/views/NewsView.vue";
 import StatisticView from "@/views/StatisticView.vue";
 import LogInView from "@/views/LogInView.vue";
 import RegistrationView from "@/views/RegistrationView.vue";
-import i18n, {getTitleTranslation} from '../i18n';
-import { createI18n } from 'vue-i18n';
+import {getTitleTranslation} from '../i18n';
 import PersonView from "@/views/PersonView.vue";
 import data from '@/router/admin-router';
 import Navbar from '@/components/UI/Navbar.vue';
@@ -140,8 +139,7 @@ const setupRouter = () => {
   router.afterEach((to) => {
     const pageTitleKey = to.meta.titleKey;
     if (pageTitleKey) {
-      const pageTitle = getTitleTranslation(pageTitleKey);
-      document.title = pageTitle;
+      document.title = getTitleTranslation(pageTitleKey);
     }
   });
 };

@@ -44,5 +44,8 @@ export default createStore({
     isLoggedIn(state) {
       return state.isLoggedIn;
     },
+    authToken(state) {
+      return state.authToken;
+    },
   },
 });
