@@ -14,11 +14,11 @@
     "rss-parser": "^3.13.0",
     "stream-http": "^3.2.0",
     "timers-browserify": "^2.0.12",
-    "vue": "^3.2.13",
+    "vue": "^3.3.4",
     "vue-head": "^2.2.0",
     "vue-i18n": "^9.2.2",
     "vue-image-zoom": "^1.0.6",
-    "vue-router": "^4.0.3",
+    "vue-router": "^4.2.2",
     "vue3-carousel": "^0.3.1",
     "vuex": "^4.0.0"
   },
