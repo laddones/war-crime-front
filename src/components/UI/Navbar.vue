@@ -28,6 +28,9 @@
           <li class="nav-item">
             <router-link to="/statistic" class="nav-link active" aria-current="page">{{ $t('base.navbar.statistic') }}</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/message" class="nav-link active" aria-current="page">Сообщить о погибшем</router-link>
+          </li>
           <li class="nav-item" v-if="!isLoggedIn">
             <router-link to="/login" class="nav-link active" aria-current="page">{{ $t('base.navbar.login') }}</router-link>
           </li>

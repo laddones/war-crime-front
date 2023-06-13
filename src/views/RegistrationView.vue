@@ -12,6 +12,7 @@
                                  type="text"
                                  class="form-control text-center"
                                  id="login"
+                                 pattern="[a-zA-Z]+"
                                  :placeholder="$t('registration.login_placeholder')"
                                  required
                           >
@@ -39,12 +40,12 @@
                           >
                       </div>
                       <div class="mb-4">
-                          <label for="email" class="form-label">{{ $t('registration.password')}}</label>
+                          <label for="email" class="form-label">{{ $t('registration.email')}}</label>
                           <input v-model="email"
                                  type="email"
                                  class="form-control text-center"
                                  id="email"
-                                 :placeholder="$t('registration.email_placeholder')"
+                                 :placeholder="$t('registration.email_placeholder')+('example@example.com')"
                                  required
                           >
                       </div>
@@ -54,6 +55,9 @@
                           </div>
                           <div class="col-12">
                                 <router-link to="/login" class="btn btn-primary w-100 mb-3" role="button">{{ $t('login.login_title') }}</router-link>
+                          </div>
+                          <div class="col-12" v-if="showModal">
+                              <h1>Пожалуйста подтвердите почту</h1>
                           </div>
                       </div>
                   </form>
@@ -76,36 +80,42 @@ export default {
           password: "",
           email: "",
           confirm_password: "",
+          showModal: false,
       };
     },
     methods: {
-      handleSubmit() {
-          if (this.password !== this.confirm_password) {
-            // Проверка совпадения паролей
-            alert("Пароли не совпадают!");
-            return;
-          }
+        handleSubmit() {
+            if (!/^[a-zA-Z]+$/.test(this.login)) {
+              alert("Логин должен содержать только символы на английском языке!");
+              return;
+            }
+              if (this.password !== this.confirm_password) {
+                // Проверка совпадения паролей
+                alert("Пароли не совпадают!");
+                return;
+              }
 
-          if (this.password.length < 8) {
-            // Проверка минимальной длины пароля
-            alert("Минимальная длина пароля - 8 символов!");
-            return;
-          }
-        // Выполните здесь отправку запроса по API, используя значения полей email и password
-        // Можно использовать, например, axios или fetch для отправки запроса
-        // Пример с использованием axios:
-        axios.post("/api/v1/registration", {
-          username: this.login,
-          password: this.password,
-          email: this.email,
-        })
-        .then(response => {
-          // Обработайте ответ от сервера
-        })
-        .catch(error => {
-          // Обработайте ошибку при отправке запроса
-        });
-      }
+              if (this.password.length < 8) {
+                // Проверка минимальной длины пароля
+                alert("Минимальная длина пароля - 8 символов!");
+                return;
+              }
+            // Выполните здесь отправку запроса по API, используя значения полей email и password
+            // Можно использовать, например, axios или fetch для отправки запроса
+            // Пример с использованием axios:
+            axios.post("http://127.0.0.1:8000/api/v1/registration/", {
+              username: this.login,
+              password: this.password,
+              email: this.email,
+            })
+            .then(response => {
+                this.showModal = true;
+            })
+            .catch(error => {
+              console.log(error);
+            });
+
+        },
     },
     created() {
         document.title = getTitleTranslation('base.navbar.login');

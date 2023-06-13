@@ -12,6 +12,7 @@ import Navbar from '@/components/UI/Navbar.vue';
 import Footer from '@/components/UI/Footer.vue';
 
 import store from '../store';
+import MessageView from "@/views/MessageView.vue";
 
 
 const routes_client = [
@@ -77,21 +78,14 @@ const routes_client = [
     }
   },
   {
-    path: '/navbar',
-    name: 'navbar',
-    component: Navbar,
+    path: '/message',
+    name: 'message',
+    component: MessageView,
     meta: {
-      titleKey: 'Navbar' // Заголовок футера, если нужно
+      titleKey: 'Сообщить о погибшем'
     }
   },
-  {
-    path: '/footer',
-    name: 'footer',
-    component: Footer,
-    meta: {
-      titleKey: 'Footer' // Заголовок футера, если нужно
-    }
-  }
+
 ];
 
 
@@ -109,12 +103,10 @@ const setupRouter = () => {
   router.beforeEach((to, from, next) => {
 
      const isLoggedIn = store.getters.isLoggedIn;
-      console.log(isLoggedIn);
     // Проверка, требуется ли аутентификация для данного маршрута
     if (to.matched.some(record => record.meta.requiresAuth)) {
       // Проверяем, авторизован ли пользователь
       if (!isLoggedIn) {
-        console.log('User not auth');
         if (to.matched.some(record => record.meta.requiresAuthDisallow)) {
           next();
         }

@@ -11,6 +11,14 @@ module.exports = defineConfig({
       },
     },
   },
+  devServer: {
+    proxy: {
+      '/admin': {
+        target: 'http://localhost:8000',  // Адрес вашего сервера Django
+        changeOrigin: true,
+      },
+    },
+  },
 })
 
 
