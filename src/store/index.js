@@ -25,10 +25,9 @@ export default createStore({
         })
         .then((response) => {
           // Обработка успешного ответа от сервера
-          const authToken = response.data.authToken; // Получаем токен из ответа сервера
+          const authToken = response.data.access; // Получаем токен из ответа сервера
           commit('setAuthToken', authToken); // Сохраняем токен в состоянии хранилища
           commit('setLoggedIn', true); // Устанавливаем флаг авторизации в true
-          console.log('Success');
         })
         .catch((error) => {
           // Обработка ошибки при отправке запроса
@@ -39,6 +38,11 @@ export default createStore({
       // Здесь выполняется логика выхода из системы
       commit('setAuthToken', null); // Очищаем токен в состоянии хранилища
       commit('setLoggedIn', false); // Устанавливаем флаг авторизации в false
+    },
+  },
+  getters: {
+    isLoggedIn(state) {
+      return state.isLoggedIn;
     },
   },
 });
