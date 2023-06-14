@@ -1,245 +1,92 @@
 <template>
-  <section class="hero-section p-4">
-    <div class="containe-fluid">
-      <div class="row">
-        <div class="col-lg-10 col-12" style="margin-left: auto;margin-right: auto;">
-          <div class="text-center mb-2 pb-2">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-3 col-sm-2"></div>
-                <div class="col-xl-3 col-lg-4 col-md-3 col-sm-2"></div>
-              </div>
-            </div>
-          </div>
-          <Carousel :items-to-show="carouselItemsToShow" :wrap-around="true" :autoplay="2000">
-            <Slide v-for="person in persons" :key="person.first_name">
-              <div class="carousel__item item" @click="openModal(person)">
-                <div class="carousel__item-inner">
-                  <img :src="person.image" class="owl-carousel-image img-fluid" alt="">
-                </div>
-              </div>
-            </Slide>
-            <template #addons>
-              <Navigation />
-            </template>
-          </Carousel>
-        </div>
+  <div id="slider">
+    <transition-group tag="div" :name="transitionName" class="slides-group">
+      <div v-if="show" :key="current" class="slide">
+        <img :src="slides[current]" alt="Slide Image">
       </div>
+    </transition-group>
+    <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
+      &#10094;
     </div>
-
-    <div v-if="isOpenModal" class="modal" @click="closeModal">
-      <div class="zoom-controls">
-        <button class="zoom-in-button" @click.stop="zoomIn"></button>
-        <button class="zoom-out-button" @click.stop="zoomOut"></button>
-      </div>
-      <div class="modal-content">
-        <div class="image-wrapper">
-          <img :src="selectedPerson.image" :style="{ transform: 'scale(' + selectedPerson.zoomLevel + ')' }" class="modal-image" alt="">
-        </div>
-      </div>
+    <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
+      &#10095;
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import { Carousel, Slide, Navigation } from 'vue3-carousel';
-
 export default {
-  name: "HomeCarousel",
-  components: {
-    Carousel,
-    Slide,
-    Navigation,
-  },
   data() {
     return {
-      persons: [
-        {
-          last_name: 'last_name',
-          first_name: 'first_name',
-          middle_name: 'middle_name',
-          image: 'https://images.wallpaperscraft.ru/image/single/voennyj_soldat_maska_220395_800x1200.jpg',
-          zoomLevel: 1,
-        },
-        {
-          last_name: 'last_name',
-          first_name: 'first_name',
-          middle_name: 'middle_name',
-          image: 'https://searchthisweb.com/wallpaper/military-helicopter_3840x2160_dtwkl.jpg',
-          zoomLevel: 1,
-        },
-        {
-          last_name: 'last_name',
-          first_name: 'first_name',
-          middle_name: 'middle_name',
-          image: 'https://e1.pxfuel.com/desktop-wallpaper/941/559/desktop-wallpaper-military-soldier-high-resolution-1920x1200-1600x1000-for-your-mobile-tablet-military-soldier-thumbnail.jpg',
-          zoomLevel: 1,
-        },
-        {
-          last_name: 'last_name',
-          first_name: 'first_name',
-          middle_name: 'middle_name',
-          image: 'https://thumbs.dreamstime.com/z/%D0%BE%D1%87%D0%B5%D0%BD%D1%8C-%D1%88%D0%B8%D1%80%D0%BE%D0%BA%D0%B0%D1%8F-%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0-%D1%81-%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BE%D0%B1%D0%BB%D0%B0%D0%BA%D0%B0%D0%BC%D0%B8-%D0%BD%D0%B5%D0%B1%D0%B0-%D0%B8-%D1%81%D0%BE%D0%BB%D0%BD%D0%B5%D1%87%D0%BD%D1%8B%D1%85-%D0%BB%D1%83%D1%87%D0%B5%D0%B9-184962862.jpg',
-          zoomLevel: 1,
-        }
-      ],
-      isOpenModal: false,
-      selectedPerson: null,
-      carouselItemsToShow: 1,
+      current: 0,
+      direction: 1,
+      transitionName: "fade",
+      show: false,
+      slides: [
+        'https://pbs.twimg.com/media/ES78auQX0Ac1qKo.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_rightside_noBG.png/1200px-AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_rightside_noBG.png',
+        'https://www.examen.ru/assets/images/2018/20181018-vodolaz.jpg',
+        // Добавьте ссылки на остальные изображения
+      ]
     };
   },
-  mounted() {
-    window.addEventListener('resize', this.updateCarouselItemsToShow);
-    this.updateCarouselItemsToShow();
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.updateCarouselItemsToShow);
-  },
   methods: {
-    updateCarouselItemsToShow() {
-      if (window.innerWidth < 768) {
-        this.carouselItemsToShow = 1;
-      } else {
-        this.carouselItemsToShow = 3;
-      }
-    },
-    openModal(person) {
-      this.selectedPerson = person;
-      this.isOpenModal = true;
-    },
-    closeModal() {
-      this.isOpenModal = false;
-    },
-    zoomIn() {
-      if (this.selectedPerson.zoomLevel < 1.5) {
-        this.selectedPerson.zoomLevel += 0.1;
-      }
-    },
-    zoomOut() {
-      if (this.selectedPerson.zoomLevel > 0.5) {
-        this.selectedPerson.zoomLevel -= 0.1;
-      }
-    },
+    slide(dir) {
+      this.direction = dir;
+      dir === 1
+        ? (this.transitionName = "slide-next")
+        : (this.transitionName = "slide-prev");
+      var len = this.slides.length;
+      this.current = (this.current + dir % len + len) % len;
+    }
   },
+  mounted() {
+    this.show = true;
+  }
 };
 </script>
-<style scoped>
-.hero-section {
-  background-color: #f8f8f8;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
 
-.item {
-  height: 100%;
+<style>
+/* Стили слайдера */
+#slider {
   width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  height: 100vh;
+  position: relative;
 }
 
-.owl-carousel-image {
+.slide {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  box-sizing: border-box;
-}
-
-.modal {
-  position: fixed;
+  height: 100vh;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  z-index: 10;
+  cursor: pointer;
+  border: 3px solid #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.modal-content {
-  max-width: 80%;
-  max-height: 80%;
-  background-color: white;
-  padding: 2rem;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.175);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.modal-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center center;
-  transition: transform 0.3s ease;
-}
-
-.modal-image.full-width {
-  width: 100%;
-  height: auto;
-  max-height: none;
-}
-
-.modal-image.full-height {
-  width: auto;
-  height: 100%;
-  max-width: none;
-}
-
-.zoom-controls {
+  width: 70px;
+  height: 70px;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
+  top: calc(50% - 35px);
+  left: 1%;
+  transition: transform 0.3s ease-in-out;
+  user-select: none;
 }
 
-.zoom-button {
-  width: 2rem;
-  height: 2rem;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: 50%;
-  outline: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.btn-next {
+  left: auto;
+  right: 1%;
 }
 
-.zoom-button:hover {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.zoom-in-button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: transparent;
-  background-image: url('@/assets/images/lupa/lupa_plus-transformed.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-}
-
-.zoom-out-button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: transparent;
-  background-image: url('@/assets/images/lupa/lupa_minus-transformed.png'); /* Замените на путь к вашей иконке лупы */
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-}
-
-.zoom-in-button {
-  background-size: 28px 28px; /* Задайте желаемый размер иконки */
-}
-
-.zoom-out-button {
-  background-size: 28px 28px; /* Задайте желаемый размер иконки */
+.btn:hover {
+  transform: scale(1.1);
 }
 </style>
