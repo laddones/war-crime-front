@@ -1,5 +1,5 @@
 <template>
-<footer v-if="!isAdminRoute">
+
   <footer id="footer" class="text-white text-center text-lg-start">
     <!-- Grid container -->
     <div class="container-fluid p-4">
@@ -59,7 +59,7 @@
     </div>
     <!-- Copyright -->
   </footer>
-</footer>
+
 </template>
 
 <style>

@@ -128,18 +128,11 @@
               </div>
             </div>
           </div>
-          <div class="carousel2 owl-carousel owl-theme">
-            <div class="owl-carousel-info-wrap item" v-for="source_image in source_images" :key="source_image.id">
-              <a :href="source_image.image.url" class="fancybox" data-fancybox="gallery">
-                <img :src="source_image.image.url" class="owl-carousel-image img-fluid" alt="">
-              </a>
-              <p>{{ source_image.text }}</p>
-            </div>
-          </div>
+          <hr class="my-5">
+      <SourceCarousel/>
         </div>
       </div>
-      <hr class="my-5">
-      <SourceCarousel/>
+
     </div>
   </section>
 </template>
