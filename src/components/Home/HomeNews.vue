@@ -30,16 +30,31 @@
 
 <script>
 import NewsItems from "@/components/UI/NewsItemsRss.vue";
+import axios from "axios";
 export default {
     name: "HomeNews",
     components: {NewsItems},
     data() {
         return {
-            news: {
-                image: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80'
-            },
+            news: {},
         }
     },
+    created() {
+        this.getDailyNewsItems();
+    },
+    methods:{
+        getDailyNewsItems(){
+            axios.get("http://127.0.0.1:8000/api/v1/partners/")
+            .then(response => {
+                this.news = response.data;
+                console.log(this.news);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+    },
+
 }
 </script>
 

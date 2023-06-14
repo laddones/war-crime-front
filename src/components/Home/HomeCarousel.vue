@@ -43,6 +43,7 @@
 <script>
   import 'vue3-carousel/dist/carousel.css';
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+  import axios from "axios";
 export default {
     name: "HomeCarousel",
     components: {
@@ -53,56 +54,22 @@ export default {
     },
     data(){
         return {
-          persons: [
-              {
-                  last_name: 'last_name-1',
-                  first_name: 'first_name-1',
-                  middle_name: 'middle_name-1',
-                  image: 'https://t3.ftcdn.net/jpg/02/54/85/88/360_F_254858893_X2mEiY1a6ojE5aBV0ydgQWkwJxJ7s0GF.jpg'
-              },
-              {
-                  last_name: 'last_name-2',
-                  first_name: 'first_name-2',
-                  middle_name: 'middle_name-2',
-                  image: 'https://images.unsplash.com/photo-1539538507524-eab6a4184604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWlsaXRhcnl8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
-              },
-              {
-                  last_name: 'last_name-3',
-                  first_name: 'first_name-3',
-                  middle_name: 'middle_name-3',
-                  image: 'https://t3.ftcdn.net/jpg/02/54/85/88/360_F_254858893_X2mEiY1a6ojE5aBV0ydgQWkwJxJ7s0GF.jpg'
-              },
-              {
-                  last_name: 'last_name-4',
-                  first_name: 'first_name-4',
-                  middle_name: 'middle_name-4',
-                  image: 'https://images.unsplash.com/photo-1539538507524-eab6a4184604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWlsaXRhcnl8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
-              },
-              {
-                  last_name: 'last_name-5',
-                  first_name: 'first_name-5',
-                  middle_name: 'middle_name-5',
-                  image: 'https://t3.ftcdn.net/jpg/02/54/85/88/360_F_254858893_X2mEiY1a6ojE5aBV0ydgQWkwJxJ7s0GF.jpg'
-              },
-              {
-                  last_name: 'last_name-6',
-                  first_name: 'first_name-6',
-                  middle_name: 'middle_name-6',
-                  image: 'https://images.unsplash.com/photo-1539538507524-eab6a4184604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWlsaXRhcnl8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
-              },
-          ],
-          carouselItemsToShow: 2,
+            persons: [],
+            carouselItemsToShow: 2,
         }
     },
+    created() {
+      this.getCarouselItems();
+    },
     mounted() {
-      this.updateCarouselItemsToShow(); // Вызов метода при монтировании компонента
-      window.addEventListener('resize', this.updateCarouselItemsToShow); // Слушаем изменение размера окна браузера
+        this.updateCarouselItemsToShow(); // Вызов метода при монтировании компонента
+        window.addEventListener('resize', this.updateCarouselItemsToShow); // Слушаем изменение размера окна браузера
     },
     beforeUnmount() {
       window.removeEventListener('resize', this.updateCarouselItemsToShow); // Удаляем слушатель при размонтировании компонента
     },
     methods: {
-      updateCarouselItemsToShow() {
+        updateCarouselItemsToShow() {
         // Обновляем значение items-to-show в зависимости от ширины окна браузера
         if (window.innerWidth < 768) {
           this.carouselItemsToShow = 1;
@@ -110,6 +77,16 @@ export default {
           this.carouselItemsToShow = 3;
         }
       },
+        getCarouselItems(){
+            axios.get("http://127.0.0.1:8000/api/v1/carouselhomeview/")
+            .then(response => {
+                this.persons = response.data;
+                console.log(this.persons);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
     },
 }
 

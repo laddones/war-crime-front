@@ -48,27 +48,32 @@
 import NewsItemsRss from "@/components/UI/NewsItemsRss.vue";
 import NewsItems from "@/components/UI/NewsItems.vue";
 import {getTitleTranslation} from "@/i18n";
+import axios from "axios";
 
 export default {
     name: "NewsView.vue",
     components: {NewsItems, NewsItemsRss},
     data(){
         return{
-            news: [
-                {
-                    url_news: 'https://eadaily.com/ru/news/2023/04/25/v-zone-svo-pogib-smertyu-hrabryh-deputat-verhovnogo-soveta-hakasii-dmitriy-ivanov',
-                    title: 'В зоне СВО погиб смертью храбрых депутат Верховного совета Хакасии Дмитрий Иванов',
-                    span_date: '25/04/2023 22:06',
-                    news_name: 'eadaily.com',
-                    text: 'Наддосвідчений український тренер Мирон Маркевич відновить роботу на посаді головного тренера львівських "Карпат"',
-                    image: 'https://img4.eadaily.com/r650x650/o/b03/40fe4208fc2f401c335a9d04151bf.jpeg'
-                }
-            ]
+            news: [],
         }
     },
     created() {
       document.title = getTitleTranslation('base.navbar.news');
+      this.getNewsItems();
     },
+    methods:{
+        getNewsItems(){
+            axios.get("http://127.0.0.1:8000/api/v1/important_news/")
+            .then(response => {
+                this.news = response.data;
+                console.log(this.news);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+    }
 }
 </script>
 
