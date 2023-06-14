@@ -28,7 +28,7 @@
     </div>
 
     <div v-if="isOpenModal" class="modal" @click="closeModal">
-      <div class="zoom-controls" v-if="isOpenModal">
+      <div class="zoom-controls">
         <button class="zoom-in-button" @click.stop="zoomIn"></button>
         <button class="zoom-out-button" @click.stop="zoomOut"></button>
       </div>
@@ -85,25 +85,17 @@ export default {
       ],
       isOpenModal: false,
       selectedPerson: null,
-      carouselItemsToShow: 2,
+      carouselItemsToShow: 1,
     };
   },
   mounted() {
-    this.updateCarouselItemsToShow();
     window.addEventListener('resize', this.updateCarouselItemsToShow);
+    this.updateCarouselItemsToShow();
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.updateCarouselItemsToShow);
   },
   methods: {
-    openModal(person) {
-      this.selectedPerson = person;
-      this.isOpenModal = true;
-    },
-    closeModal() {
-      this.isOpenModal = false;
-      this.selectedPerson = null;
-    },
     updateCarouselItemsToShow() {
       if (window.innerWidth < 768) {
         this.carouselItemsToShow = 1;
@@ -111,20 +103,26 @@ export default {
         this.carouselItemsToShow = 3;
       }
     },
+    openModal(person) {
+      this.selectedPerson = person;
+      this.isOpenModal = true;
+    },
+    closeModal() {
+      this.isOpenModal = false;
+    },
     zoomIn() {
       if (this.selectedPerson.zoomLevel < 1.5) {
         this.selectedPerson.zoomLevel += 0.1;
       }
     },
     zoomOut() {
-      if (this.selectedPerson.zoomLevel > 0.5) {
+      if (this.selectedPerson.zoomLevel > 1) {
         this.selectedPerson.zoomLevel -= 0.1;
       }
     },
   },
 };
 </script>
-
 <style scoped>
 .hero-section {
   background-color: #f8f8f8;
