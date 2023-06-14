@@ -1,40 +1,46 @@
 <template>
-  <nav v-if="!isAdminRoute">
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow" id="main_navbar">
-      <div class="container-fluid" style="margin-top: 15px;">
-        <router-link to="/" class="navbar-brand" id="brand_label">
-          <img src="@/assets/images/logo/Icon-removebg-preview.png" alt="Logo">
-          <span>Потерь.НЕТ</span>
-        </router-link>
-        <div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" style="height: 40px; width: 40px; "></span>
-          </button>
-        </div>
-        <div class="header_test-fill-mode" style="">
-          <span class="header_test-fill-mode-span">{{ $t('base.header_test') }}</span>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarToggler">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center" id="navbar_text">
-            <li class="nav-item">
-              <router-link to="/" class="nav-link active" aria-current="page">{{ $t('base.navbar.home') }}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/persons" class="nav-link active" aria-current="page">{{ $t('base.navbar.search_people') }}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/news" class="nav-link active" aria-current="page">{{ $t('base.navbar.news') }}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/statistic" class="nav-link active" aria-current="page">{{ $t('base.navbar.statistic') }}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/login" class="nav-link active" aria-current="page">{{ $t('base.navbar.login') }}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/registration" class="nav-link active" aria-current="page">{{ $t('base.navbar.registration') }}</router-link>
-            </li>
-            <li class="nav-item dropdown">
+<nav v-if="!isAdminRoute">
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow" id="main_navbar">
+    <div class="container-fluid" style="margin-top: 15px;">
+      <router-link to="/" class="navbar-brand" id="brand_label">
+        <img src="@/assets/images/logo/Icon-removebg-preview.png" alt="Logo">
+        <span>Потерь.НЕТ</span>
+      </router-link>
+      <div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="height: 40px; width: 40px; "></span>
+        </button>
+      </div>
+      <div class="header_test-fill-mode" style="">
+        <span class="header_test-fill-mode-span">{{ $t('base.header_test') }}</span>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center" id="navbar_text">
+          <li class="nav-item">
+            <router-link to="/" class="nav-link active" aria-current="page">{{ $t('base.navbar.home') }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/persons" class="nav-link active" aria-current="page">{{ $t('base.navbar.search_people') }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/news" class="nav-link active" aria-current="page">{{ $t('base.navbar.news') }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/statistic" class="nav-link active" aria-current="page">{{ $t('base.navbar.statistic') }}</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/message" class="nav-link active" aria-current="page">Сообщить о погибшем</router-link>
+          </li>
+          <li class="nav-item" v-if="!isLoggedIn">
+            <router-link to="/login" class="nav-link active" aria-current="page">{{ $t('base.navbar.login') }}</router-link>
+          </li>
+          <li class="nav-item" v-if="!isLoggedIn">
+            <router-link to="/registration" class="nav-link active" aria-current="page">{{ $t('base.navbar.registration') }}</router-link>
+          </li>
+          <li v-if="isLoggedIn" class="nav-item">
+            <a @click="handleLogout" class="nav-link active">Выйти</a>
+          </li>
+          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="@/assets/images/lang/choise_lang.png" alt="Язык" style="width: 25px;">
               </a>
@@ -44,15 +50,17 @@
                 </li>
               </ul>
             </li>
-          </ul>
-        </div>
+        </ul>
       </div>
-    </nav>
-    <router-view/>
+    </div>
   </nav>
+  <router-view/>
+</nav>
 </template>
 
 <script>
+
+
 export default {
   data() {
     return {
@@ -62,6 +70,7 @@ export default {
       { code: 'ru', name: 'Русский' },
       ],
       selectedLanguage: 'en',
+
     };
   },
   methods: {
@@ -69,23 +78,32 @@ export default {
       this.selectedLanguage = language.code;
       this.$i18n.locale = language.code;
 
-
       const pageTitleKey = this.$route.meta.titleKey;
       if (pageTitleKey) {
         const pageTitle = this.$t(pageTitleKey);
         document.title = pageTitle;
       }
     },
+
   },
   computed: {
     isAdminRoute() {
       return this.$route.path.startsWith('/admin');
     },
-  },
+    isLoggedIn() {
+      // Вернуть состояние авторизации из вашего хранилища или другого места,
+      // где хранится информация о состоянии авторизации пользователя
+      return this.$store.state.isLoggedIn;
+    },
+    handleLogout() {
+      // Ваша логика для выполнения выхода пользователя
+      this.$store.dispatch('logout');
+    }
+  }
 };
 </script>
 
-<style scoped>
+<style>
 .header_test-fill-mode {
   position: absolute;
   background-color: lightgray;

@@ -115,6 +115,7 @@
         </div>
 
         <!-- Джерела -->
+
         <div class="tab-pane fade" id="inf" role="tabpanel" aria-labelledby="inf_label">
           <div class="card overflow-hidden mb-4">
             <h5 class="card-header">{{ $t('Джерела') }}</h5>
@@ -126,13 +127,12 @@
                   </li>
                 </ul>
               </div>
+              <hr class="my-5">
+      <SourceCarousel/>
             </div>
           </div>
-          <hr class="my-5">
-      <SourceCarousel/>
         </div>
       </div>
-
     </div>
   </section>
 </template>

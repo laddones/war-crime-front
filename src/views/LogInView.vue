@@ -8,7 +8,7 @@
                   <form  @submit.prevent="handleSubmit" class="text-center">
                       <div class="mb-4">
                         <label for="login" class="form-label">{{ $t('login.login')}}</label>
-                        <input v-model="login"
+                        <input v-model="username"
                                type="text"
                                class="form-control text-center"
                                id="login"
@@ -43,38 +43,46 @@
 </template>
 
 <script>
-import axios from "axios";
+import { ref, computed  } from 'vue';
+import { useStore   } from 'vuex';
 import {getTitleTranslation} from "@/i18n";
-
+import { useRouter } from 'vue-router';
 export default {
-    name: "LogInView",
-    data() {
+    setup() {
+      const store = useStore();
+      const router = useRouter();
+      const username = ref('');
+      const password = ref('');
+
+      const handleSubmit = () => {
+        // Используйте Vuex для выполнения авторизации
+        store.dispatch('login', {
+          username: username.value,
+          password: password.value,
+        }).then(() => {
+        // Перенаправление на домашнюю страницу после успешной авторизации
+        router.push({name: 'home', });
+        });
+      };
+
+      const handleLogout = () => {
+        // Используйте Vuex для выполнения выхода из системы
+        store.dispatch('logout');
+      };
+
       return {
-        login: "",
-        password: ""
+        username,
+        password,
+        handleSubmit,
+        handleLogout,
+        isLoggedIn: computed(() => store.state.isLoggedIn),
       };
     },
-    methods: {
-      handleSubmit() {
-        // Выполните здесь отправку запроса по API, используя значения полей email и password
-        // Можно использовать, например, axios или fetch для отправки запроса
-        // Пример с использованием axios:
-        axios.post("/api/v1/login", {
-          login: this.login,
-          password: this.password
-        })
-        .then(response => {
-          // Обработайте ответ от сервера
-        })
-        .catch(error => {
-          // Обработайте ошибку при отправке запроса
-        });
-      }
-    },
     created() {
-        document.title = getTitleTranslation('base.navbar.login');
+        document.title = getTitleTranslation('base.navbar.statistic');
     },
-}
+};
+
 </script>
 
 <style scoped>

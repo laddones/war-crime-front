@@ -1,7 +1,6 @@
 <template>
   <div>
     <button class="open-modal-btn" @click="openModal">Сообщить об ошибке</button>
-
     <!-- Сообщить об ошибке -->
     <div v-if="isModalOpen" class="modal">
       <div class="modal-dialog">
