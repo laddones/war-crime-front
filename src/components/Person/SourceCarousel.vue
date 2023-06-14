@@ -28,7 +28,7 @@
     </div>
 
     <div v-if="isOpenModal" class="modal" @click="closeModal">
-      <div class="zoom-controls" v-if="isOpenModal">
+      <div class="zoom-controls">
         <button class="zoom-in-button" @click.stop="zoomIn"></button>
         <button class="zoom-out-button" @click.stop="zoomOut"></button>
       </div>
