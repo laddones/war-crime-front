@@ -115,6 +115,7 @@
         </div>
 
         <!-- Джерела -->
+
         <div class="tab-pane fade" id="inf" role="tabpanel" aria-labelledby="inf_label">
           <div class="card overflow-hidden mb-4">
             <h5 class="card-header">{{ $t('Джерела') }}</h5>
@@ -126,20 +127,12 @@
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
-          <div class="carousel2 owl-carousel owl-theme">
-            <div class="owl-carousel-info-wrap item" v-for="source_image in source_images" :key="source_image.id">
-              <a :href="source_image.image.url" class="fancybox" data-fancybox="gallery">
-                <img :src="source_image.image.url" class="owl-carousel-image img-fluid" alt="">
-              </a>
-              <p>{{ source_image.text }}</p>
+              <hr class="my-5">
+      <SourceCarousel/>
             </div>
           </div>
         </div>
       </div>
-      <hr class="my-5">
-      <SourceCarousel/>
     </div>
   </section>
 </template>

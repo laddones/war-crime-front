@@ -28,9 +28,9 @@
     </div>
 
     <div v-if="isOpenModal" class="modal" @click="closeModal">
-      <div class="zoom-controls" v-if="isOpenModal">
+      <div class="zoom-controls">
         <button class="zoom-in-button" @click.stop="zoomIn"></button>
-<button class="zoom-out-button" @click.stop="zoomOut"></button>
+        <button class="zoom-out-button" @click.stop="zoomOut"></button>
       </div>
       <div class="modal-content">
         <div class="image-wrapper">
@@ -79,7 +79,7 @@ export default {
           last_name: 'last_name',
           first_name: 'first_name',
           middle_name: 'middle_name',
-          image: 'https://images.wallpaperscraft.ru/image/single/uzory_tsvety_formy_118512_5000x5000.jpg',
+          image: 'https://avatars.mds.yandex.net/i?id=bb7134b024ba8659249ac08a8cdf4a1583cfb514-9036108-images-thumbs&n=13',
           zoomLevel: 1,
         }
       ],
@@ -208,7 +208,7 @@ export default {
   }
 }
 
-.zoom-in-button{
+.zoom-in-button {
   width: 30px;
   height: 30px;
   border: none;
@@ -218,6 +218,7 @@ export default {
   background-position: center;
   cursor: pointer;
 }
+
 .zoom-out-button {
   width: 30px;
   height: 30px;

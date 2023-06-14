@@ -40,11 +40,16 @@
           <li v-if="isLoggedIn" class="nav-item">
             <a @click="handleLogout" class="nav-link active">Выйти</a>
           </li>
-          <div class="language-selector">
-            <button v-for="language in supportedLanguages" :key="language" @click="changeLanguage(language)">
-              {{ language }}
-            </button>
-          </div>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="@/assets/images/lang/choise_lang.png" alt="Язык" style="width: 25px;">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li v-for="language in supportedLanguages" :key="language.code" @click="changeLanguage(language)">
+                  <a class="dropdown-item">{{ language.name }}</a>
+                </li>
+              </ul>
+            </li>
         </ul>
       </div>
     </div>
@@ -59,19 +64,27 @@
 export default {
   data() {
     return {
-      supportedLanguages: ['en', 'ru', 'uk'], // список поддерживаемых языков
+      supportedLanguages: [
+      { code: 'uk', name: 'Українська' },
+      { code: 'en', name: 'English' },
+      { code: 'ru', name: 'Русский' },
+      ],
+      selectedLanguage: 'en',
+
     };
   },
   methods: {
     changeLanguage(language) {
-      this.$i18n.locale = language; // изменяем текущий язык
-      // Обновляем заголовок вкладки при изменении языка
+      this.selectedLanguage = language.code;
+      this.$i18n.locale = language.code;
+
       const pageTitleKey = this.$route.meta.titleKey;
       if (pageTitleKey) {
         const pageTitle = this.$t(pageTitleKey);
         document.title = pageTitle;
       }
     },
+
   },
   computed: {
     isAdminRoute() {
@@ -91,57 +104,89 @@ export default {
 </script>
 
 <style>
+.header_test-fill-mode {
+  position: absolute;
+  background-color: lightgray;
+  padding: 0 5px;
+  top: 5px;
+  left: 50%;
+  width: 320px;
+  margin-left: -160px;
+  text-align: center;
+  z-index: 2;
+}
 
+.header_test-fill-mode-span {
+  display: block;
+  font-weight: 500;
+  color: black;
+  font-size: 15px;
+  line-height: normal;
+  padding: 2px 0;
+}
 
-  .header_test-fill-mode {
-      position: absolute;
-      background-color: lightgray;
-      padding: 0 5px;
-      top: 5px;
-      left: 50%;
-      width: 320px;
-      margin-left: -160px;
-      text-align: center;
-      z-index: 2;
-  }
-  .header_test-fill-mode-span {
-      display: block;
-      font-weight: 500;
-      color: black;
-      font-size: 15px;
-      line-height: normal;
-      padding: 2px 0;
-  }
+#main_navbar {
+  background-color: white;
+}
 
-  #main_navbar {
-    background-color: white;
-  }
+#brand_label {
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+  font-family: 'Roboto Slab', serif;
+  color: black;
+  font-size: 2rem;
+}
 
-  #brand_label {
-      @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
-      font-family: 'Roboto Slab', serif;
-      color: black;
-      font-size: 2rem;
-  }
+#navbar_text {
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+  font-family: 'Roboto Slab', serif;
+  color: black;
+  font-size: 1.2rem;
+}
 
-  #navbar_text {
-      @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
-      font-family: 'Roboto Slab', serif;
-      color: black;
-      font-size: 1.2rem;
-  }
-  #navbar_text :hover{
-      background-color: #0dcaf0;
-      border-radius: 10px;
-        -webkit-transition: all 0.1s ease;
-        -moz-transition: all 0.1s ease;
-        -o-transition: all 0.1s ease;
-        transition: all 0.1s ease;
-      font-size: 1.4rem;
-  }
-  #footer{
-      background-color: #383285;
-      flex-shrink: 0;
-      width: 100%;
-  }
+#navbar_text :hover {
+  background-color: #0dcaf0;
+  border-radius: 10px;
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  font-size: 1.4rem;
+}
+
+.dropdown-toggle::after {
+  display: none; /* Скрыть стрелку */
+}
+
+.dropdown-menu {
+  margin-top: 0; /* Добавляем верхний отступ */
+}
+
+.dropdown-menu li {
+  width: 100%;
+  text-align: center;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px;
+  color: black;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #0dcaf0;
+  border-radius: 10px;
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  font-size: 1.2rem;
+}
+
+#footer {
+  background-color: #383285;
+  flex-shrink: 0;
+  width: 100%;
+}
 </style>

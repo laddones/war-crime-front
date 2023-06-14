@@ -30,7 +30,7 @@
     <div v-if="isOpenModal" class="modal" @click="closeModal">
       <div class="zoom-controls" v-if="isOpenModal">
         <button class="zoom-in-button" @click.stop="zoomIn"></button>
-<button class="zoom-out-button" @click.stop="zoomOut"></button>
+        <button class="zoom-out-button" @click.stop="zoomOut"></button>
       </div>
       <div class="modal-content">
         <div class="image-wrapper">
@@ -55,18 +55,33 @@ export default {
     return {
       persons: [
         {
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
           image: 'https://images.wallpaperscraft.ru/image/single/voennyj_soldat_maska_220395_800x1200.jpg',
           zoomLevel: 1,
         },
         {
-          image: 'https://images.wallpaperscraft.ru/image/single/voennyj_soldat_maska_220395_800x1200.jpg',
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
+          image: 'https://searchthisweb.com/wallpaper/military-helicopter_3840x2160_dtwkl.jpg',
           zoomLevel: 1,
         },
         {
-          image: 'https://images.wallpaperscraft.ru/image/single/voennyj_soldat_maska_220395_800x1200.jpg',
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
+          image: 'https://e1.pxfuel.com/desktop-wallpaper/941/559/desktop-wallpaper-military-soldier-high-resolution-1920x1200-1600x1000-for-your-mobile-tablet-military-soldier-thumbnail.jpg',
           zoomLevel: 1,
         },
-
+        {
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
+          image: 'https://images.wallpaperscraft.ru/image/single/uzory_tsvety_formy_118512_5000x5000.jpg',
+          zoomLevel: 1,
+        }
       ],
       isOpenModal: false,
       selectedPerson: null,
@@ -179,21 +194,28 @@ export default {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 
-.zoom-controls button {
-  margin-right: 0.5rem;
+.zoom-button {
+  width: 2rem;
+  height: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@media (max-width: 767px) {
-  .container-fluid {
-    padding-left: 0;
-    padding-right: 0;
-  }
+.zoom-button:hover {
+  background-color: rgba(255, 255, 255, 1);
 }
 
-.zoom-in-button{
+.zoom-in-button {
   width: 30px;
   height: 30px;
   border: none;
@@ -203,6 +225,7 @@ export default {
   background-position: center;
   cursor: pointer;
 }
+
 .zoom-out-button {
   width: 30px;
   height: 30px;
