@@ -63,6 +63,11 @@
 </template>
 
 <style>
+  #footer {
+    background-color: #383285;
+    flex-shrink: 0;
+    width: 100%;
+  }
 </style>
 
 <script>

@@ -184,9 +184,5 @@ export default {
   font-size: 1.2rem;
 }
 
-#footer {
-  background-color: #383285;
-  flex-shrink: 0;
-  width: 100%;
-}
+
 </style>

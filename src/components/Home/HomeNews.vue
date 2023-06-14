@@ -44,7 +44,7 @@ export default {
     },
     methods:{
         getDailyNewsItems(){
-            axios.get("http://127.0.0.1:8000/api/v1/partners/")
+            axios.get("http://127.0.0.1:8000/api/v1/daily_news/")
             .then(response => {
                 this.news = response.data;
                 console.log(this.news);
