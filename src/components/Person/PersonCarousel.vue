@@ -208,33 +208,4 @@ export default {
   }
 }
 
-.zoom-in-button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: transparent;
-  background-image: url('@/assets/images/lupa/lupa_plus-transformed.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-}
-
-.zoom-out-button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: transparent;
-  background-image: url('@/assets/images/lupa/lupa_minus-transformed.png'); /* Замените на путь к вашей иконке лупы */
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-}
-
-.zoom-in-button {
-  background-size: 28px 28px; /* Задайте желаемый размер иконки */
-}
-
-.zoom-out-button {
-  background-size: 28px 28px; /* Задайте желаемый размер иконки */
-}
 </style>

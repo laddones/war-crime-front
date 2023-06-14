@@ -79,7 +79,7 @@ export default {
           last_name: 'last_name',
           first_name: 'first_name',
           middle_name: 'middle_name',
-          image: 'https://images.wallpaperscraft.ru/image/single/uzory_tsvety_formy_118512_5000x5000.jpg',
+          image: 'https://thumbs.dreamstime.com/z/%D0%BE%D1%87%D0%B5%D0%BD%D1%8C-%D1%88%D0%B8%D1%80%D0%BE%D0%BA%D0%B0%D1%8F-%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0-%D1%81-%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BE%D0%B1%D0%BB%D0%B0%D0%BA%D0%B0%D0%BC%D0%B8-%D0%BD%D0%B5%D0%B1%D0%B0-%D0%B8-%D1%81%D0%BE%D0%BB%D0%BD%D0%B5%D1%87%D0%BD%D1%8B%D1%85-%D0%BB%D1%83%D1%87%D0%B5%D0%B9-184962862.jpg',
           zoomLevel: 1,
         }
       ],
@@ -116,7 +116,7 @@ export default {
       }
     },
     zoomOut() {
-      if (this.selectedPerson.zoomLevel > 1) {
+      if (this.selectedPerson.zoomLevel > 0.5) {
         this.selectedPerson.zoomLevel -= 0.1;
       }
     },
