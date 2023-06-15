@@ -1,92 +1,173 @@
 <template>
-  <div id="slider">
-    <transition-group tag="div" :name="transitionName" class="slides-group">
-      <div v-if="show" :key="current" class="slide">
-        <img :src="slides[current]" alt="Slide Image">
+  <carousel :items-to-show="1.5">
+    <slide v-for="person in persons" :key="person.first_name">
+      <div class="image-container">
+        <img :src="person.image" :alt="person.first_name" />
       </div>
-    </transition-group>
-    <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
-      &#10094;
-    </div>
-    <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
-      &#10095;
-    </div>
-  </div>
+    </slide>
+
+    <template #addons>
+      <navigation />
+      <pagination />
+    </template>
+  </carousel>
 </template>
 
 <script>
+
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+
 export default {
+  name: 'App',
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation,
+  },
   data() {
     return {
-      current: 0,
-      direction: 1,
-      transitionName: "fade",
-      show: false,
-      slides: [
-        'https://pbs.twimg.com/media/ES78auQX0Ac1qKo.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_rightside_noBG.png/1200px-AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_rightside_noBG.png',
-        'https://www.examen.ru/assets/images/2018/20181018-vodolaz.jpg',
-        // Добавьте ссылки на остальные изображения
-      ]
+      persons: [
+        {
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
+          image: 'https://images.wallpaperscraft.ru/image/single/voennyj_soldat_maska_220395_800x1200.jpg',
+          zoomLevel: 1,
+        },
+        {
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
+          image: 'https://searchthisweb.com/wallpaper/military-helicopter_3840x2160_dtwkl.jpg',
+          zoomLevel: 1,
+        },
+        {
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
+          image: 'https://e1.pxfuel.com/desktop-wallpaper/941/559/desktop-wallpaper-military-soldier-high-resolution-1920x1200-1600x1000-for-your-mobile-tablet-military-soldier-thumbnail.jpg',
+          zoomLevel: 1,
+        },
+        {
+          last_name: 'last_name',
+          first_name: 'first_name',
+          middle_name: 'middle_name',
+          image: 'https://avatars.mds.yandex.net/i?id=bb7134b024ba8659249ac08a8cdf4a1583cfb514-9036108-images-thumbs&n=13',
+          zoomLevel: 1,
+        }
+      ],
+      isOpenModal: false,
+      selectedPerson: null,
+      carouselItemsToShow: 2,
     };
   },
-  methods: {
-    slide(dir) {
-      this.direction = dir;
-      dir === 1
-        ? (this.transitionName = "slide-next")
-        : (this.transitionName = "slide-prev");
-      var len = this.slides.length;
-      this.current = (this.current + dir % len + len) % len;
-    }
-  },
-  mounted() {
-    this.show = true;
-  }
+
+
+
+
+
 };
 </script>
 
-<style>
-/* Стили слайдера */
-#slider {
+
+<style scoped>
+
+.image-container {
   width: 100%;
-  height: 100vh;
-  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 400px; /* Замените на желаемую максимальную высоту */
 }
 
-.slide {
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.hero-section {
+  background-color: #f8f8f8;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.item {
+  height: 100%;
   width: 100%;
-  height: 100vh;
-  position: absolute;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.owl-carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  box-sizing: border-box;
+}
+
+.modal {
+  position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.btn {
-  z-index: 10;
-  cursor: pointer;
-  border: 3px solid #fff;
+.modal-content {
+  max-width: 80%;
+  max-height: 80%;
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.175);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 70px;
+  overflow: hidden;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  transition: transform 0.3s ease;
+}
+
+.modal-image.full-width {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+.modal-image.full-height {
+  width: auto;
+  height: 100%;
+  max-width: none;
+}
+
+.zoom-controls {
   position: absolute;
-  top: calc(50% - 35px);
-  left: 1%;
-  transition: transform 0.3s ease-in-out;
-  user-select: none;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
 }
 
-.btn-next {
-  left: auto;
-  right: 1%;
+.zoom-controls button {
+  margin-right: 0.5rem;
 }
 
-.btn:hover {
-  transform: scale(1.1);
+@media (max-width: 767px) {
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 </style>

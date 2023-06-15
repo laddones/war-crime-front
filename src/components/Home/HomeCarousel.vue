@@ -59,7 +59,7 @@ export default {
         }
     },
     created() {
-      this.getCarouselItems();
+      this.getPersonDataView();
     },
     mounted() {
         this.updateCarouselItemsToShow(); // Вызов метода при монтировании компонента
@@ -77,8 +77,8 @@ export default {
           this.carouselItemsToShow = 3;
         }
       },
-        getCarouselItems(){
-            axios.get("http://127.0.0.1:8000/api/v1/carouselhomeview/")
+        getPersonDataView(){
+            axios.get("http://127.0.0.1:8000/api/v1/carouseldataview/")
             .then(response => {
                 this.persons = response.data;
                 console.log(this.persons);
