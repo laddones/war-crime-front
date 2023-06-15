@@ -1,136 +1,92 @@
 <template>
-  <div class="carousel-wrapper">
-    <carousel :items-to-show="carouselItemsToShow">
-      <slide v-for="person in persons" :key="person.first_name">
-        <div class="image-container">
-          <img :src="person.image" :alt="person.first_name" @click="openModal(person)" />
-        </div>
-      </slide>
-
-      <template #addons>
-        <navigation />
-        <pagination />
-      </template>
-    </carousel>
-
-    <div v-if="isOpenModal" class="modal">
-      <div class="modal-content">
-        <span class="close-button" @click="closeModal">×</span>
-        <img :src="selectedPerson.image" :alt="selectedPerson.first_name" class="modal-image" />
+  <div id="slider">
+    <transition-group tag="div" :name="transitionName" class="slides-group">
+      <div v-if="show" :key="current" class="slide">
+        <img :src="slides[current]" alt="Slide Image">
       </div>
+    </transition-group>
+    <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
+      &#10094;
+    </div>
+    <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
+      &#10095;
     </div>
   </div>
 </template>
 
-<style>
-.carousel-wrapper {
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-.image-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-}
-
-.image-container img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  cursor: pointer;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.modal-content {
-  position: relative;
-  max-width: 50%;
-  max-height: 50%;
-  text-align: center;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 50px;
-  color: white;
-  cursor: pointer;
-}
-
-.modal-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-</style>
-
 <script>
-import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
-
 export default {
-  name: 'App',
-  components: {
-    Carousel,
-    Slide,
-    Pagination,
-    Navigation,
-  },
   data() {
     return {
-      persons: [
-
-        {
-          last_name: 'last_name',
-          first_name: 'first_name',
-          middle_name: 'middle_name',
-          image: 'https://searchthisweb.com/wallpaper/military-helicopter_3840x2160_dtwkl.jpg',
-          zoomLevel: 1,
-        },
-        {
-          last_name: 'last_name',
-          first_name: 'first_name',
-          middle_name: 'middle_name',
-          image: 'https://e1.pxfuel.com/desktop-wallpaper/941/559/desktop-wallpaper-military-soldier-high-resolution-1920x1200-1600x1000-for-your-mobile-tablet-military-soldier-thumbnail.jpg',
-          zoomLevel: 1,
-        },
-        {
-          last_name: 'last_name',
-          first_name: 'first_name',
-          middle_name: 'middle_name',
-          image: 'https://avatars.mds.yandex.net/i?id=bb7134b024ba8659249ac08a8cdf4a1583cfb514-9036108-images-thumbs&n=13',
-          zoomLevel: 1,
-        }
-      ],
-      isOpenModal: false,
-      selectedPerson: null,
-      carouselItemsToShow: 1,
+      current: 0,
+      direction: 1,
+      transitionName: "fade",
+      show: false,
+      slides: [
+        'https://pbs.twimg.com/media/ES78auQX0Ac1qKo.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_rightside_noBG.png/1200px-AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_rightside_noBG.png',
+        'https://www.examen.ru/assets/images/2018/20181018-vodolaz.jpg',
+        // Добавьте ссылки на остальные изображения
+      ]
     };
   },
   methods: {
-    openModal(person) {
-      this.isOpenModal = true;
-      this.selectedPerson = person;
-    },
-    closeModal() {
-      this.isOpenModal = false;
-      this.selectedPerson = null;
-    },
+    slide(dir) {
+      this.direction = dir;
+      dir === 1
+        ? (this.transitionName = "slide-next")
+        : (this.transitionName = "slide-prev");
+      var len = this.slides.length;
+      this.current = (this.current + dir % len + len) % len;
+    }
   },
+  mounted() {
+    this.show = true;
+  }
 };
 </script>
+
+<style>
+/* Стили слайдера */
+#slider {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.slide {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  z-index: 10;
+  cursor: pointer;
+  border: 3px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: calc(50% - 35px);
+  left: 1%;
+  transition: transform 0.3s ease-in-out;
+  user-select: none;
+}
+
+.btn-next {
+  left: auto;
+  right: 1%;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+</style>
