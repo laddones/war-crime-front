@@ -70,9 +70,10 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <hr class="my-5">
+              <hr class="my-5">
             <PersonCarousel/>
+            </div>
+
           </div>
         </div>
 

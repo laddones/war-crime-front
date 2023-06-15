@@ -23,11 +23,22 @@
 import { getTitleTranslation } from '@/i18n';
 import SearchForm from "@/components/Search/SearchForm.vue";
 import PersonCards from "@/components/UI/PersonCards.vue";
+import axios from "axios";
+
 export default {
     name: "SearchPersonsView",
     components: {PersonCards, SearchForm},
     created() {
         document.title = getTitleTranslation('base.navbar.search_people');
+    },
+    data(){
+        return {
+            persons: [],
+            carouselItemsToShow: 2,
+        }
+    },
+    created() {
+      this.getCarouselItems();
     },
     data() {
         return{
@@ -94,8 +105,24 @@ export default {
                 },
             ]
         }
+    },
+    methods: {
+    getCarouselItems(){
+            axios.get("http://127.0.0.1:8000/api/v1/carouseldataview/")
+            .then(response => {
+                this.persons = response.data;
+                console.log(this.persons);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+
+
+
     }
-}
+    }
+
 </script>
 
 <style scoped>
