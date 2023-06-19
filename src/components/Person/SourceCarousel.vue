@@ -15,7 +15,9 @@
     </div>
     <div v-if="modalOpen" class="modal">
       <div class="modal-content">
-        <span class="close" @click="closeModal">&times;</span>
+        <span class="close" @click="closeModal">
+          <img src="@/assets/images/lupa/krest.png" alt="Close Icon" class="close-icon">
+        </span>
         <img :src="slides[selectedImageIndex]" alt="Modal Image">
       </div>
     </div>
@@ -64,7 +66,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* Стили слайдера */
 #slider {
   width: 100%;
@@ -138,4 +140,11 @@ export default {
   font-weight: bold;
   cursor: pointer;
 }
+
+
+.close-icon {
+  width: 30px;
+  height: 30px;
+}
+
 </style>

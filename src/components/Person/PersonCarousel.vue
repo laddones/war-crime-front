@@ -29,10 +29,12 @@
 
     <div v-if="isOpenModal" class="modal" @click="closeModal">
       <div class="zoom-controls">
-        <button class="zoom-in-button" @click.stop="zoomIn"></button>
-        <button class="zoom-out-button" @click.stop="zoomOut"></button>
+        <img src="@/assets/images/lupa/lupa_plus-transformed.png" class="zoom-button" @click.stop="zoomIn" alt="Zoom In">
+        <img src="@/assets/images/lupa/lupa_minus-transformed.png" class="zoom-button" @click.stop="zoomOut" alt="Zoom Out">
       </div>
-      <div class="modal-content">
+      <div class="modal-content" :style="{ width: modalWidth, height: modalHeight }">
+
+        <div class="close-button" @click.stop="closeModal"></div>
         <div class="image-wrapper">
           <img :src="selectedPerson.image" :style="{ transform: 'scale(' + selectedPerson.zoomLevel + ')' }" class="modal-image" alt="">
         </div>
@@ -86,6 +88,8 @@ export default {
       isOpenModal: false,
       selectedPerson: null,
       carouselItemsToShow: 2,
+      modalWidth: '80%', // Значение по умолчанию для ширины модального окна
+      modalHeight: '80%', // Значение по умолчанию для высоты модального окна
     };
   },
   mounted() {
@@ -99,6 +103,7 @@ export default {
     openModal(person) {
       this.selectedPerson = person;
       this.isOpenModal = true;
+      this.updateModalSize();
     },
     closeModal() {
       this.isOpenModal = false;
@@ -114,13 +119,21 @@ export default {
     zoomIn() {
       if (this.selectedPerson.zoomLevel < 1.5) {
         this.selectedPerson.zoomLevel += 0.1;
+        this.updateModalSize();
       }
     },
     zoomOut() {
       if (this.selectedPerson.zoomLevel > 0.5) {
         this.selectedPerson.zoomLevel -= 0.1;
+        this.updateModalSize();
       }
     },
+    updateModalSize() {
+      const scaleFactor = this.selectedPerson.zoomLevel;
+      this.modalWidth = `${80 * scaleFactor}%`; // Пропорциональное увеличение ширины модального окна
+      this.modalHeight = `${80 * scaleFactor}%`; // Пропорциональное увеличение высоты модального окна
+},
+
   },
 };
 </script>
@@ -168,6 +181,18 @@ export default {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative; /* Добавлено для позиционирования крестика */
+}
+
+.modal-content .close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/images/lupa/krest.png); /* Замените path_to_close_image на путь к изображению крестика */
+  background-size: cover;
+  cursor: pointer;
 }
 
 .modal-image {
@@ -197,8 +222,11 @@ export default {
   z-index: 2;
 }
 
-.zoom-controls button {
+.zoom-button {
+  width: 24px;
+  height: 24px;
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {
@@ -207,5 +235,4 @@ export default {
     padding-right: 0;
   }
 }
-
 </style>
