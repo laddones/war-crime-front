@@ -1,8 +1,10 @@
 <template>
   <div id="slider">
     <transition-group tag="div" :name="transitionName" class="slides-group">
-      <div v-if="show" :key="current" class="slide">
-        <img :src="slides[current]" alt="Slide Image">
+      <div v-if="show" :key="current" class="slide" @click="openModal(current)">
+        <div class="image-container">
+          <img :src="slides[current]" alt="Slide Image">
+        </div>
       </div>
     </transition-group>
     <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
@@ -10,6 +12,12 @@
     </div>
     <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
       &#10095;
+    </div>
+    <div v-if="modalOpen" class="modal">
+      <div class="modal-content">
+        <span class="close" @click="closeModal">&times;</span>
+        <img :src="slides[selectedImageIndex]" alt="Modal Image">
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +35,9 @@ export default {
         'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_rightside_noBG.png/1200px-AKM_automatkarbin_Ryssland_-_7%2C62x39mm_-_Arm%C3%A9museum_rightside_noBG.png',
         'https://www.examen.ru/assets/images/2018/20181018-vodolaz.jpg',
         // Добавьте ссылки на остальные изображения
-      ]
+      ],
+      modalOpen: false,
+      selectedImageIndex: null
     };
   },
   methods: {
@@ -38,6 +48,14 @@ export default {
         : (this.transitionName = "slide-prev");
       var len = this.slides.length;
       this.current = (this.current + dir % len + len) % len;
+    },
+    openModal(index) {
+      this.selectedImageIndex = index;
+      this.modalOpen = true;
+    },
+    closeModal() {
+      this.modalOpen = false;
+      this.selectedImageIndex = null;
     }
   },
   mounted() {
@@ -88,5 +106,36 @@ export default {
 
 .btn:hover {
   transform: scale(1.1);
+}
+
+/* Стили модального окна */
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
